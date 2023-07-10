@@ -6,12 +6,14 @@
 using namespace std;
 
 int string_to_int(const string& decimal_num){
+    cout << decimal_num << endl;
     int len = decimal_num.length();
     int integer = 0;
-    float temp;
+    double temp = 0.0;
     for (int i = 0; i < len; i++) {
-        temp = (int(decimal_num[i]) - '0')*pow(10,i);
-        integer += temp;      
+        temp = (decimal_num[i] - '0')*(pow(10.0,float(i)));
+        integer += temp;
+        cout << "integer:: " << integer << endl;     
     }
     
     cout << "int:" << integer << endl;
