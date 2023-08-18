@@ -15,6 +15,7 @@ class Orange{
     Orange(){};
     Orange(const string&);
     int get_juice(){return juice_ml;};
+    int get_diameter_size_cm(){return diameter_size_cm;};
     
     private:
     int juice_ml;
@@ -26,10 +27,10 @@ class Orange{
 };
 
 Orange::Orange(const string& orange_type){
-    srand(SEED_VALUE); // initialize random number generator
+    srand(3); // initialize random number generator
     this -> orange_type = orange_type; // type of orange
     this -> diameter_size_cm = 4.7 + (float)(rand()%5); // average diameter of an orange is 6.7cm. Thus, we create a range of sizes between 4.7cm to 8.7cm
-    this -> juice_ml = (4/3*3.142*pow(diameter_size_cm,3))* (1/(12-(float)(rand()%4))); //average orange juice is 1ml per 10cm^3, thus we create a range of 1ml per 8cm^3 to 12cm^3
+    this -> juice_ml = (4/3*3.142*pow(diameter_size_cm/2,3))+ 7; //average orange juice is 1ml per 10cm^3, thus we create a range of 1ml per 8cm^3 to 12cm^3
 }
 class Orange_Farm: public Orange{
 
@@ -88,7 +89,7 @@ int main(){
             cout << "i:" + to_string(i) + "j:" + to_string(j) << "Oranges: " << list_of_orange_farms[i][j].get_no_of_orange() << endl;
 
             orange_juice[i+j] = list_of_orange_farms[i][j].oranges_data();
-            cout << "JUICE: " << orange_juice[i][25] << endl;
+            cout << "JUICE: " << orange_juice[i][50].get_juice()<< endl;
         }
     }
     int asd = orange_juice[10][10].get_juice();
