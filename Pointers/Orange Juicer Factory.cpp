@@ -13,7 +13,7 @@ using namespace std;
 class Orange{
 
     public:
-    Orange(){};
+    //Orange(){};
     Orange(string&){};
     int get_juice(){return juice_ml;};
     
@@ -33,14 +33,14 @@ Orange::Orange(string& orange_type){
     this -> juice_ml = (4/3*3.142*pow(diameter_size_cm,3))* (1/(12-(float)(rand()%4))); //average orange juice is 1ml per 10cm^3, thus we create a range of 1ml per 8cm^3 to 12cm^3
 }
 
-class Orange_Farm: public Orange{
+class Orange_Farm{
 
     public:
     //Orange_Farm(){};
     Orange_Farm(const string&,const int&);
     void change_farm_name(const string& x){farm_name = x;};
     int get_no_of_orange(){return no_of_oranges;};
-    void harvesting(const int& today_harvest){this-> no_of_oranges = today_harvest;};
+    void harvesting(const int& today_harvest){this-> no_of_oranges += today_harvest;};
 
     private:
     string farm_name;
@@ -66,6 +66,13 @@ int main(){
     for(int i= 0 ; i < no_of_farms_in_Reading ; i++){
         list_of_orange_farms[i] = Orange_Farm("Reading Orange_Farm"+ to_string(i), 100);
     }
-    return 0;
 
+    cout << "Harvesting Time... " << endl;
+    for(int i=0 ; i < no_of_farms_in_Reading ; i++){
+        srand(time(0));
+        list_of_orange_farms->harvesting(500+ rand()%1001); // no. of harvested oranges on that day
+        cout << "Oranges: " << list_of_orange_farms->get_no_of_orange() << endl;
+    }
+
+    return 0;
 }
