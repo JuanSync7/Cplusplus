@@ -88,7 +88,7 @@ int main(){
             cout << "i:" + to_string(i) + "j:" + to_string(j) << "Oranges: " << list_of_orange_farms[i][j].get_no_of_orange() << endl;
 
             orange_juice[i+j] = list_of_orange_farms[i][j].oranges_data();
-            cout << "JUICE: " << orange_juice[i] << endl;
+            cout << "JUICE: " << orange_juice[i][25] << endl;
         }
     }
     int asd = orange_juice[10][10].get_juice();
