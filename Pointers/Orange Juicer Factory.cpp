@@ -2,8 +2,6 @@
 #include<string>
 #include<random>
 #include<cmath>
-#include <bits/stdc++.h>
-
 
 #define SEED_VALUE 123
 
@@ -13,8 +11,8 @@ using namespace std;
 class Orange{
 
     public:
-    //Orange(){};
-    Orange(string&){};
+    Orange(){};
+    Orange(string&);
     int get_juice(){return juice_ml;};
     
     private:
@@ -32,12 +30,11 @@ Orange::Orange(string& orange_type){
     this -> diameter_size_cm = 4.7 + (float)(rand()%5); // average diameter of an orange is 6.7cm. Thus, we create a range of sizes between 4.7cm to 8.7cm
     this -> juice_ml = (4/3*3.142*pow(diameter_size_cm,3))* (1/(12-(float)(rand()%4))); //average orange juice is 1ml per 10cm^3, thus we create a range of 1ml per 8cm^3 to 12cm^3
 }
-
-class Orange_Farm{
+class Orange_Farm: public Orange{
 
     public:
-    //Orange_Farm(){};
-    Orange_Farm(const string&,const int&);
+    Orange_Farm(){};
+    Orange_Farm(const string&, const int&);
     void change_farm_name(const string& x){farm_name = x;};
     int get_no_of_orange(){return no_of_oranges;};
     void harvesting(const int& today_harvest){this-> no_of_oranges += today_harvest;};
@@ -52,7 +49,7 @@ class Orange_Farm{
     string** weather;
 };
 
-Orange_Farm::Orange_Farm(const string& farm_name = "XXX Orange Farm", const int& no_of_trees = 0){
+Orange_Farm::Orange_Farm(const string& farm_name, const int& no_of_trees){
     this -> farm_name = farm_name;
     this -> no_of_trees = no_of_trees;
 }
@@ -64,7 +61,8 @@ int main(){
     Orange_Farm* list_of_orange_farms = new Orange_Farm[no_of_farms_in_Reading];
 
     for(int i= 0 ; i < no_of_farms_in_Reading ; i++){
-        list_of_orange_farms[i] = Orange_Farm("Reading Orange_Farm"+ to_string(i), 100);
+        string temp = "Reading Orange Farm";
+        list_of_orange_farms[i] = Orange_Farm(temp + to_string(i), 100);
     }
 
     cout << "Harvesting Time... " << endl;
